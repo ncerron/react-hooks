@@ -28,7 +28,7 @@ const Formulario = ({ agregarTurno }) => {
   //cuando el usuario presiona agregar turno
   const submitTurno = (e) => {
     e.preventDefault();
-    //validar
+    //1.validar
     if (
       nombre.trim() === "" ||
       consultorio.trim() === "" ||
@@ -38,22 +38,28 @@ const Formulario = ({ agregarTurno }) => {
       SetError(true);
       return;
     }
-    //Eliminar mensaje previo
+    //2.Eliminar mensaje previo
     SetError(false);
 
-    //asignar un ID unico
+    //3.asignar un ID unico
     turno.id = uuid();
     console.log(turno);
 
-    //crear turno
+    //4.crear turno
     agregarTurno(turno);
 
-    //reiniciar el formulario
+    //5.reiniciar el formulario
+    SetTurno({
+      nombre: "",
+      consultorio: "",
+      fecha: "",
+      hora: "",
+    });
   };
 
   return (
     <Fragment>
-      <h2>Crear turno</h2>
+      <h3>Crear turno</h3>
 
       {error ? (
         <p className="alerta-error">Todos los campos son obligatorios</p>
