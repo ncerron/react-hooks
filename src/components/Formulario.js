@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import React from "react";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 
 const Formulario = ({ agregarTurno }) => {
   //crear state turno
@@ -29,12 +29,7 @@ const Formulario = ({ agregarTurno }) => {
   const submitTurno = (e) => {
     e.preventDefault();
     //1.validar
-    if (
-      nombre.trim() === "" ||
-      consultorio.trim() === "" ||
-      fecha.trim() === "" ||
-      hora.trim() === ""
-    ) {
+    if (nombre.trim() === "" || consultorio.trim() === "" || fecha.trim() === "" || hora.trim() === "") {
       SetError(true);
       return;
     }
@@ -61,41 +56,13 @@ const Formulario = ({ agregarTurno }) => {
     <Fragment>
       <h3>Crear turno</h3>
 
-      {error ? (
-        <p className="alerta-error">Todos los campos son obligatorios</p>
-      ) : null}
+      {error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null}
 
       <form onSubmit={submitTurno}>
-        <input
-          type="text"
-          name="nombre"
-          className="u-full-width"
-          placeholder="Nombre"
-          onChange={handleChange}
-          value={nombre}
-        />
-        <input
-          type="text"
-          name="consultorio"
-          className="u-full-width"
-          placeholder="Consultorio"
-          onChange={handleChange}
-          value={consultorio}
-        />
-        <input
-          type="date"
-          name="fecha"
-          className="u-full-width"
-          onChange={handleChange}
-          value={fecha}
-        />
-        <input
-          type="time"
-          name="hora"
-          className="u-full-width"
-          onChange={handleChange}
-          value={hora}
-        />
+        <input type="text" name="nombre" className="u-full-width" placeholder="Nombre" onChange={handleChange} value={nombre} />
+        <input type="text" name="consultorio" className="u-full-width" placeholder="Consultorio" onChange={handleChange} value={consultorio} />
+        <input type="date" name="fecha" className="u-full-width" onChange={handleChange} value={fecha} />
+        <input type="time" name="hora" className="u-full-width" onChange={handleChange} value={hora} />
 
         <button type="submit" className="u-full-width button-primary">
           Agregar turno
